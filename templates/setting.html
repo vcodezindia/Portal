@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VCodez - Settings</title>
+  <link rel="icon" href="https://vcodez.com/wp-content/uploads/2024/11/vcodez-8-300x74.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    
+    :root {
+      --primary: #1282a2;
+      --primary-light: #034748;
+      --secondary: #0a1128;
+      --accent: #10b981;
+      --light-bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text-dark: #0f172a;
+      --text-gray: #64748b;
+      --text-light: #94a3b8;
+      --border-color: #e2e8f0;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #dbeafe, #eff6ff, #f0f9ff);
+      color: var(--text-dark);
+      padding-top: 70px;
+      overflow-x: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    /* Dark mode styles */
+    body.dark-mode {
+      --primary: #1282a2;
+      --primary-light: #034748;
+      --secondary: #0a1128;
+      --accent: #10b981;
+      --light-bg: #1e293b;
+      --card-bg: #0f172a;
+      --text-dark: #e2e8f0;
+      --text-gray: #94a3b8;
+      --text-light: #64748b;
+      --border-color: #334155;
+      background: linear-gradient(135deg, #0f172a, #1e293b, #334155);
+    }
+
+    .particles-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: linear-gradient(135deg, #e0f2fe, #eff6ff, #f0f9ff);
+      background-size: 400% 400%;
+      animation: gradientFlow 18s ease infinite;
+      transition: all 0.3s ease;
+    }
+    
+    body.dark-mode .particles-container {
+      background: linear-gradient(135deg, #0f172a, #1e293b, #334155);
+    }
+    
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.3;
+      background: rgba(18, 130, 162, 0.1);
+      animation: float 12s infinite ease-in-out;
+    }
+    
+    body.dark-mode .particle {
+      background: rgba(18, 130, 162, 0.2);
+    }
+    
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0.2; }
+      25% { opacity: 0.3; }
+      50% { transform: translateY(-20px) translateX(20px) rotate(180deg); opacity: 0.2; }
+      75% { opacity: 0.3; }
+      100% { transform: translateY(0) translateX(0) rotate(360deg); opacity: 0.2; }
+    }
+    
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(to right, var(--primary), var(--primary-light));
+      padding: 0 40px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      height: 70px;
+      transition: all 0.3s ease;
+    }
+
+    .navbar .brand {
+      display: flex;
+      align-items: center;
+      color: white;
+      text-decoration: none;
+    }
+
+    .navbar .brand img {
+      height: 38px;
+      margin-right: 10px;
+    }
+
+    .navbar .nav-links {
+      display: flex;
+    }
+
+    .navbar .nav-links a {
+      margin-left: 3px;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 10px 15px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .navbar .nav-links a i {
+      margin-right: 6px;
+    }
+
+    .navbar .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .nav-links a.active {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .notification-badge {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      background: #ef4444;
+      color: white;
+      font-size: 10px;
+      padding: 1px 6px;
+      border-radius: 10px;
+    }
+
+    .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    .page-title {
+      color: var(--primary);
+    }
+
+    .page-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .btn i {
+      margin-right: 8px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(to right, var(--primary), var(--primary-light));
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(to right, #023738, #0e6c86);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background: rgba(3, 71, 72, 0.1);
+      transform: translateY(-2px);
+    }
+    
+    .btn-danger {
+      background: #ef4444;
+      color: white;
+    }
+    
+    .btn-danger:hover {
+      background: #dc2626;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      margin-bottom: 30px;
+      position: relative;
+      animation: slideUp 0.5s ease-out;
+    }
+
+    .card-pattern {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(circle at 90% 10%, rgba(18, 130, 162, 0.03) 0%, transparent 30%),
+                        radial-gradient(circle at 10% 90%, rgba(18, 130, 162, 0.03) 0%, transparent 30%);
+      z-index: 0;
+    }
+
+    .card-header {
+      background: linear-gradient(to right, var(--primary), var(--primary-light));
+      padding: 20px 25px;
+      color: white;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-title {
+      font-size: 20px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+    }
+
+    .card-title i {
+      margin-right: 10px;
+    }
+
+    .card-body {
+      padding: 25px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .tab {
+      padding: 12px 20px;
+      font-weight: 600;
+      color: var(--text-gray);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s;
+    }
+
+    .tab:hover {
+      color: var(--primary);
+    }
+
+    .tab.active {
+      color: var(--primary-light);
+      border-bottom-color: var(--primary-light);
+    }
+
+    .tab i {
+      margin-right: 8px;
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.5s;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--text-dark);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      transition: all 0.3s;
+      background-color: var(--card-bg);
+      color: var(--text-dark);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(18, 130, 162, 0.2);
+    }
+
+    .form-select {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+      background-position: calc(100% - 15px) center;
+      background-repeat: no-repeat;
+      background-color: var(--card-bg);
+      color: var(--text-dark);
+    }
+
+    .form-check {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .form-check-input {
+      width: 18px;
+      height: 18px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    .form-check-label {
+      cursor: pointer;
+    }
+
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 30px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+    }
+
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 22px;
+      width: 22px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .toggle-slider {
+      background-color: var(--primary);
+    }
+
+    input:focus + .toggle-slider {
+      box-shadow: 0 0 1px var(--primary);
+    }
+
+    input:checked + .toggle-slider:before {
+      transform: translateX(30px);
+    }
+
+    .toggle-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .toggle-label {
+      font-weight: 500;
+      color: var(--text-dark);
+    }
+
+    .setting-item {
+      padding: 15px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .setting-item:last-child {
+      border-bottom: none;
+    }
+
+    .setting-title {
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: var(--text-dark);
+    }
+
+    .section-title {
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    .setting-description {
+      font-size: 14px;
+      color: var(--text-gray);
+      margin-bottom: 10px;
+    }
+
+    .color-options {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .color-option {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.3s;
+    }
+
+    .color-option.active {
+      transform: scale(1.2);
+      border-color: white;
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+
+    .color-blue {
+      background: linear-gradient(to right, #1282a2, #034748);
+    }
+
+    .color-purple {
+      background: linear-gradient(to right, #8b5cf6, #6d28d9);
+    }
+
+    .color-green {
+      background: linear-gradient(to right, #10b981, #047857);
+    }
+
+    .color-red {
+      background: linear-gradient(to right, #ef4444, #b91c1c);
+    }
+
+    .color-orange {
+      background: linear-gradient(to right, #f59e0b, #d97706);
+    }
+
+    .notification-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .footer {
+      background: var(--light-bg);
+      padding: 20px;
+      text-align: center;
+      color: var(--text-gray);
+      font-size: 13px;
+      margin-top: 40px;
+      border-top: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 1024px) {
+      .container {
+        padding: 0 15px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 0 20px;
+      }
+      
+      .navbar .nav-links a span {
+        display: none;
+      }
+      
+      .navbar .nav-links a i {
+        margin-right: 0;
+      }
+
+      .card-header {
+        padding: 15px 20px;
+      }
+
+      .card-body {
+        padding: 20px;
+      }
+
+      .mobile-menu-toggle {
+        display: block;
+      }
+
+      .navbar .nav-links {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: var(--primary);
+        flex-direction: column;
+        padding: 20px;
+        transition: all 0.3s ease;
+        z-index: 999;
+      }
+
+      .navbar .nav-links.active {
+        left: 0;
+      }
+
+      .navbar .nav-links a {
+        margin: 10px 0;
+        font-size: 18px;
+      }
+
+      .navbar .nav-links a i {
+        margin-right: 10px;
+      }
+
+      .navbar .nav-links a span {
+        display: inline-block;
+      }
+
+      .action-buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
+
+      .page-actions {
+        width: 100%;
+      }
+
+      .page-actions .btn {
+        flex: 1;
+      }
+
+      .tabs {
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .tab {
+        padding: 10px 15px;
+      }
+    }
+    :root {
+  --primary: #1282a2;
+  --primary-light: #034748;
+  --secondary: #0a1128;
+  --accent: #10b981;
+  --light-bg: #f8fafc;
+  --card-bg: #ffffff;
+  --text-dark: #0f172a;
+  --text-gray: #64748b;
+  --text-light: #94a3b8;
+  --border-color: #e2e8f0;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+  --primary: #1282a2;
+  --primary-light: #034748;
+  --secondary: #0a1128;
+  --accent: #10b981;
+  --light-bg: #1e293b;
+  --card-bg: #0f172a;
+  --text-dark: #e2e8f0;
+  --text-gray: #94a3b8;
+  --text-light: #64748b;
+  --border-color: #334155;
+  background: linear-gradient(135deg, #0f172a, #1e293b, #334155);
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #dbeafe, #eff6ff, #f0f9ff);
+  color: var(--text-dark);
+  transition: all 0.3s ease;
+}
+
+.particles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: linear-gradient(135deg, #e0f2fe, #eff6ff, #f0f9ff);
+  background-size: 400% 400%;
+  animation: gradientFlow 18s ease infinite;
+  transition: all 0.3s ease;
+}
+
+body.dark-mode .particles-container {
+  background: linear-gradient(135deg, #0f172a, #1e293b, #334155);
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.3;
+  background: rgba(18, 130, 162, 0.1);
+  animation: float 12s infinite ease-in-out;
+}
+
+body.dark-mode .particle {
+  background: rgba(18, 130, 162, 0.2);
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes float {
+  0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0.2; }
+  25% { opacity: 0.3; }
+  50% { transform: translateY(-20px) translateX(20px) rotate(180deg); opacity: 0.2; }
+  75% { opacity: 0.3; }
+  100% { transform: translateY(0) translateX(0) rotate(360deg); opacity: 0.2; }
+}
+
+/* Font size settings */
+body.font-small {
+  font-size: 14px;
+}
+
+body.font-medium {
+  font-size: 16px;
+}
+
+body.font-large {
+  font-size: 18px;
+}
+
+/* Animation reduction */
+body.reduce-animations * {
+  animation-duration: 0.01ms !important;
+  transition-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+}
+
+/* Navbar styles that should be consistent */
+.navbar {
+  background: linear-gradient(to right, var(--primary), var(--primary-light));
+  color: white;
+  transition: all 0.3s ease;
+}
+
+/* Style for active links */
+.nav-links a.active {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Footer styles */
+.footer {
+  background: var(--light-bg);
+  color: var(--text-gray);
+  border-top: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+  </style>
+</head>
+<body>
+  <!-- Particles background -->
+  <div class="particles-container" id="particles">
+    <!-- Particles will be added by JavaScript -->
+  </div>
+
+  <!-- Navigation bar -->
+  <nav class="navbar">
+    <a href="#" class="brand">
+      <img src="https://vcodez.com/wp-content/uploads/2024/11/vcodez-8-300x74.png" alt="VCodez Logo">
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="/details"><i class="fas fa-home"></i><span>Dashboard</span></a>
+      <a href="#"><i class="fas fa-project-diagram"></i><span>Projects</span></a>
+      <a href="/validation"><i class="fas fa-chart-bar"></i><span>Validation</span></a>
+      <a href="/learning"><i class="fas fa-graduation-cap"></i><span>Learning</span></a>
+      <a href="#"><i class="fas fa-bell"></i><span>Notifications</span><span class="notification-badge">3</span></a>
+      <a href="/setting" class="active"><i class="fas fa-cog"></i><span>Settings</span></a>
+      <a href="/logout" id="logoutBtn"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+    </div>
+    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+      <i class="fas fa-bars"></i>
+    </button>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <h1 class="page-title">Settings</h1>
+      <div class="page-actions">
+        <button class="btn btn-primary" id="saveSettings">
+          <i class="fas fa-save"></i> Save Changes
+        </button>
+      </div>
+    </div>
+
+    <!-- Settings Card -->
+    <div class="card">
+      <div class="card-pattern"></div>
+      <div class="card-header">
+        <h2 class="card-title"><i class="fas fa-cog"></i> Customize Your Experience</h2>
+      </div>
+      <div class="card-body">
+        <div class="tabs">
+          <div class="tab active" data-tab="appearance">
+            <i class="fas fa-palette"></i> Appearance
+          </div>
+          <div class="tab" data-tab="account">
+            <i class="fas fa-user"></i> Account
+          </div>
+          <div class="tab" data-tab="notifications">
+            <i class="fas fa-bell"></i> Notifications
+          </div>
+          <div class="tab" data-tab="security">
+            <i class="fas fa-shield-alt"></i> Security
+          </div>
+        </div>
+        
+        <!-- Appearance Tab -->
+        <div class="tab-content active" id="appearance">
+          <div class="setting-item">
+            <h3 class="section-title"><i class="fas fa-palette"></i> Theme Settings</h3>
+            
+            <div class="toggle-container">
+              <span class="toggle-label">Dark Mode</span>
+              <label class="toggle-switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            
+            <div class="setting-title">Color Theme</div>
+            <div class="setting-description">Choose your preferred color theme</div>
+            <div class="color-options">
+              <div class="color-option color-blue active" data-color="blue"></div>
+              <div class="color-option color-purple" data-color="purple"></div>
+              <div class="color-option color-green" data-color="green"></div>
+              <div class="color-option color-red" data-color="red"></div>
+              <div class="color-option color-orange" data-color="orange"></div>
+            </div>
+          </div>
+          
+          <div class="setting-item">
+            <h3 class="section-title"><i class="fas fa-font"></i> Display Settings</h3>
+            
+            <div class="form-group">
+              <label class="form-label" for="fontSize">Font Size</label>
+              <select class="form-select" id="fontSize">
+                <option value="small">Small</option>
+                <option value="medium" selected>Medium</option>
+                <option value="large">Large</option>
+              </select>
+            </div>
+            
+            <div class="toggle-container">
+              <span class="toggle-label">Reduce Animations</span>
+              <label class="toggle-switch">
+                <input type="checkbox" id="reduceAnimations">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Account Tab (Hidden by default) -->
+        <div class="tab-content" id="account">
+          <div class="setting-item">
+            <h3 class="section-title"><i class="fas fa-user"></i> Account Information</h3>
+            <div class="form-group">
+              <label class="form-label" for="fullName">Full Name</label>
+              <input type="text" class="form-control" id="fullName" placeholder="Your Name">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">Email Address</label>
+              <input type="email" class="form-control" id="email" placeholder="your@email.com">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Notifications Tab (Hidden by default) -->
+        <div class="tab-content" id="notifications">
+          <div class="setting-item">
+            <h3 class="section-title"><i class="fas fa-bell"></i> Notification Preferences</h3>
+            <div class="notification-item">
+              <span>Email Notifications</span>
+              <label class="toggle-switch">
+                <input type="checkbox" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div class="notification-item">
+              <span>Push Notifications</span>
+              <label class="toggle-switch">
+                <input type="checkbox" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Security Tab (Hidden by default) -->
+        <div class="tab-content" id="security">
+          <div class="setting-item">
+            <h3 class="section-title"><i class="fas fa-lock"></i> Security Settings</h3>
+            <div class="form-group">
+              <label class="form-label" for="currentPassword">Current Password</label>
+              <input type="password" class="form-control" id="currentPassword">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="newPassword">New Password</label>
+              <input type="password" class="form-control" id="newPassword">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="confirmPassword">Confirm Password</label>
+              <input type="password" class="form-control" id="confirmPassword">
+            </div>
+          </div>
+          
+          <div class="setting-item">
+            <div class="toggle-container">
+              <span class="toggle-label">Two-Factor Authentication</span>
+              <label class="toggle-switch">
+                <input type="checkbox" id="twoFactorToggle">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+            <div id="twoFactorOptions" style="display: none; margin-top: 15px;">
+              <div class="form-group">
+                <label class="form-label">Verification Method</label>
+                <select class="form-select">
+                  <option value="app">Authenticator App</option>
+                  <option value="sms">SMS</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2025 VCodez. All rights reserved.</p>
+  </footer>
+
+  <script>
+   // Create floating particles
+   (function() {
+  // Theme definitions
+  const themes = {
+    blue: {
+      primary: '#1282a2',
+      primaryLight: '#034748'
+    },
+    purple: {
+      primary: '#8b5cf6',
+      primaryLight: '#6d28d9'
+    },
+    green: {
+      primary: '#10b981',
+      primaryLight: '#047857'
+    },
+    red: {
+      primary: '#ef4444',
+      primaryLight: '#b91c1c'
+    },
+    orange: {
+      primary: '#f59e0b',
+      primaryLight: '#d97706'
+    }
+  };
+
+  // Apply saved settings on page load
+  function applySettings() {
+    const root = document.documentElement;
+    const navbar = document.querySelector('.navbar');
+    const cardHeaders = document.querySelectorAll('.card-header');
+    
+    // Apply dark mode if enabled
+    if (localStorage.getItem('dark-mode') === 'enabled') {
+      document.body.classList.add('dark-mode');
+    }
+    
+    // Apply saved color theme
+    const savedColor = localStorage.getItem('theme-color') || 'blue';
+    const theme = themes[savedColor];
+    
+    if (theme) {
+      // Update CSS variables
+      root.style.setProperty('--primary', theme.primary);
+      root.style.setProperty('--primary-light', theme.primaryLight);
+      
+      // Update navbar background
+      if (navbar) {
+        navbar.style.background = `linear-gradient(to right, ${theme.primary}, ${theme.primaryLight})`;
+      }
+      
+      // Update card headers
+      if (cardHeaders) {
+        cardHeaders.forEach(header => {
+          header.style.background = `linear-gradient(to right, ${theme.primary}, ${theme.primaryLight})`;
+        });
+      }
+    }
+    
+    // Apply font size
+    const savedFontSize = localStorage.getItem('font-size') || 'medium';
+    document.body.classList.add(`font-${savedFontSize}`);
+    
+    // Apply animation preference
+    if (localStorage.getItem('reduce-animations') === 'enabled') {
+      document.body.classList.add('reduce-animations');
+    }
+  }
+
+  // Create particles background
+  function initializeParticles() {
+    const particlesContainer = document.getElementById('particles');
+    if (!particlesContainer) return;
+    
+    const particleCount = 15;
+    
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      particle.style.width = Math.random() * 150 + 50 + 'px';
+      particle.style.height = particle.style.width;
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.top = Math.random() * 100 + '%';
+      particle.style.animationDelay = Math.random() * 5 + 's';
+      particlesContainer.appendChild(particle);
+    }
+  }
+
+  // Initialize mobile menu
+  function initializeMobileMenu() {
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const navLinks = document.getElementById('navLinks');
+    
+    if (!mobileMenuToggle || !navLinks) return;
+    
+    mobileMenuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      mobileMenuToggle.innerHTML = navLinks.classList.contains('active') 
+        ? '<i class="fas fa-times"></i>' 
+        : '<i class="fas fa-bars"></i>';
+    });
+  }
+
+  // Initialize settings page specific functionality
+  function initializeSettingsPage() {
+    // Tab functionality
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    if (tabs.length === 0) return; // Not on settings page
+    
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const tabId = tab.getAttribute('data-tab');
+        
+        // Remove active class from all tabs and contents
+        tabs.forEach(t => t.classList.remove('active'));
+        tabContents.forEach(c => c.classList.remove('active'));
+        
+        // Add active class to clicked tab and corresponding content
+        tab.classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+    
+    // Color theme selection
+    const colorOptions = document.querySelectorAll('.color-option');
+    
+    colorOptions.forEach(option => {
+      option.addEventListener('click', () => {
+        const color = option.getAttribute('data-color');
+        
+        // Update active state
+        colorOptions.forEach(o => o.classList.remove('active'));
+        option.classList.add('active');
+        
+        // Save theme preference
+        localStorage.setItem('theme-color', color);
+        
+        // Apply theme
+        applySettings();
+      });
+    });
+    
+    // Dark mode toggle
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    
+    if (darkModeToggle) {
+      // Set initial state
+      darkModeToggle.checked = localStorage.getItem('dark-mode') === 'enabled';
+      
+      darkModeToggle.addEventListener('change', () => {
+        if (darkModeToggle.checked) {
+          localStorage.setItem('dark-mode', 'enabled');
+        } else {
+          localStorage.setItem('dark-mode', 'disabled');
+        }
+        
+        // Apply settings
+        applySettings();
+      });
+    }
+    
+    // Two-factor authentication toggle
+    const twoFactorToggle = document.getElementById('twoFactorToggle');
+    const twoFactorOptions = document.getElementById('twoFactorOptions');
+    
+    if (twoFactorToggle && twoFactorOptions) {
+      twoFactorToggle.addEventListener('change', () => {
+        twoFactorOptions.style.display = twoFactorToggle.checked ? 'block' : 'none';
+      });
+    }
+    
+    // Save settings button functionality
+    const saveSettings = document.getElementById('saveSettings');
+    
+    if (saveSettings) {
+      saveSettings.addEventListener('click', () => {
+        // Get form values
+        const fontSize = document.getElementById('fontSize').value;
+        const reduceAnimations = document.getElementById('reduceAnimations').checked;
+        
+        // Save preferences
+        localStorage.setItem('font-size', fontSize);
+        localStorage.setItem('reduce-animations', reduceAnimations ? 'enabled' : 'disabled');
+        
+        // Apply settings
+        applySettings();
+        
+        // Show success message
+        alert('Settings saved successfully!');
+      });
+    }
+    
+    // Highlight active color option based on saved preference
+    const savedColor = localStorage.getItem('theme-color');
+    if (savedColor) {
+      document.querySelector(`.color-option[data-color="${savedColor}"]`)?.classList.add('active');
+    }
+    
+    // Set font size dropdown to saved value
+    const savedFontSize = localStorage.getItem('font-size');
+    if (savedFontSize && document.getElementById('fontSize')) {
+      document.getElementById('fontSize').value = savedFontSize;
+    }
+    
+    // Set reduce animations checkbox to saved state
+    if (localStorage.getItem('reduce-animations') === 'enabled' && document.getElementById('reduceAnimations')) {
+      document.getElementById('reduceAnimations').checked = true;
+    }
+  }
+
+  // Initialize logout functionality
+  function initializeLogout() {
+    const logoutBtn = document.getElementById('logoutBtn');
+    
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (confirm('Are you sure you want to logout?')) {
+          // In a real application, this would call a logout API
+          window.location.href = '/login';
+        }
+      });
+    }
+  }
+
+  // Add event listeners after DOM is loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    // Apply saved settings first
+    applySettings();
+    
+    // Initialize components
+    initializeParticles();
+    initializeMobileMenu();
+    initializeSettingsPage();
+    initializeLogout();
+    
+    // Handle active navigation state
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-links a');
+    
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      if (href === currentPath) {
+        link.classList.add('active');
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
