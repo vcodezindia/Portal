@@ -1,0 +1,20 @@
+<svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="mlLibGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1282a2" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#034748" stop-opacity="0.9"/>
+    </linearGradient>
+  </defs>
+  <rect x="45" y="45" width="270" height="270" rx="30" fill="#dbeafe"/>
+  <g transform="translate(75, 75)">
+    <!-- Python symbol -->
+    <path d="M105,30 C66,30 60,48 60,75 L60,90 L105,90 L105,96 L45,96 C30,96 15,108 15,135 C15,162 30,180 60,180 L75,180 L75,162 C75,144 90,129 108,129 L150,129 C162,129 171,120 171,108 L171,75 C171,51 153,30 105,30 Z M84,51 C89.9707,51 93,55.0293 93,60 C93,64.9707 88.9707,69 84,69 C79.0293,69 75,64.9707 75,60 C75,55.0293 79.0293,51 84,51 Z" fill="url(#mlLibGradient)"/>
+    <path d="M150,210 C189,210 195,192 195,165 L195,150 L150,150 L150,144 L210,144 C225,144 240,132 240,105 C240,78 225,60 195,60 L180,60 L180,78 C180,96 165,111 147,111 L105,111 C93,111 84,120 84,132 L84,165 C84,189 102,210 150,210 Z M171,189 C166.0293,189 162,184.9707 162,180 C162,175.0293 166.0293,171 171,171 C175.9707,171 180,175.0293 180,180 C180,184.9707 175.9707,189 171,189 Z" fill="#10b981"/>
+  </g>
+  <!-- Book icon -->
+  <rect x="225" y="225" width="90" height="75" rx="6" fill="#1282a2" opacity="0.8"/>
+  <rect x="219" y="219" width="90" height="75" rx="6" fill="white" stroke="#1282a2" stroke-width="6"/>
+  <line x1="243" y1="240" x2="285" y2="240" stroke="#1282a2" stroke-width="6"/>
+  <line x1="243" y1="255" x2="273" y2="255" stroke="#1282a2" stroke-width="6"/>
+  <line x1="243" y1="270" x2="279" y2="270" stroke="#1282a2" stroke-width="6"/>
+</svg>
